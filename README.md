@@ -22,12 +22,12 @@ Generate Self-Signed Certificate by executing _cert-gen.sh_ script. Edit CN valu
 - For first time deployment, disable authentication. To disable authentication in MQTT, change these lines inside _mosquitto.conf_ file. From 
 ```
 allow_anonymous false
-password_file /mosquitto/config/passwd
+password_file /mosquitto/data/passwd
 ```
 to 
 ```
 allow_anonymous true
-#password_file /mosquitto/config/passwd
+#password_file /mosquitto/data/passwd
 ```
 - After _mosquitto-broker_ container running, enter _mosquitto-broker_ container terminal by executing the command below:
 ```
@@ -35,12 +35,12 @@ docker exec -it mosquitto-broker /bin/sh
 ```
 - Create Mosquitto password file by executing the command below inside _mosquitto-broker_ terminal:
 ```
-mosquitto_passwd -c /mosquitto/config/passwd nodered
+mosquitto_passwd -c /mosquitto/data/passwd nodered
 ```
 enter the password, this will create username and hashed password used for MQTT authentication and store it inside _passwd_ file.
 - To add username and password, execute the command below inside _mosquitto-broker_ terminal:
 ```
-mosquitto_passwd /mosquitto/config/passwd USERNAME
+mosquitto_passwd /mosquitto/data/passwd USERNAME
 ```
 
 ## Create Docker Volume <a name="volume"></a>
